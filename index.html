@@ -377,86 +377,92 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const scriptURL = "https://673b5947339a4ce4451bdd2e.mockapi.io/invites";
-      let guestChoice = {
-        guestName: "",
-        guestPhone: "",
-        attendance: "",
-      };
+document.addEventListener('DOMContentLoaded', function () {
+  const scriptURL = "https://673b5947339a4ce4451bdd2e.mockapi.io/invites";
+  let guestChoice = {
+    guestName: "",
+    guestPhone: "",
+    attendance: "",
+  };
 
-      function updateGuestChoice(key, value) {
-        guestChoice[key] = value;
-      }
+  function updateGuestChoice(key, value) {
+    guestChoice[key] = value;
+  }
 
-      function submitToGoogleSheets() {
-        console.log("here");
-        fetch(scriptURL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(guestChoice),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Dữ liệu đã được gửi thành công");
-            console.log(JSON.stringify(guestChoice));
-          })
-          .catch((error) => {
-            console.error("Lỗi gửi dữ liệu", error);
-          });
-      }
+  function submitToGoogleSheets() {
+    fetch(scriptURL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(guestChoice),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Dữ liệu đã được gửi thành công");
+        console.log(JSON.stringify(guestChoice));
+      })
+      .catch((error) => {
+        console.error("Lỗi gửi dữ liệu", error);
+      });
+  }
 
-      function showStep(stepNumber) {
-        // Hide all steps
-        for (let i = 1; i <= 8; i++) {
-          const step = document.getElementById(`step${i}`);
-          if (step) step.classList.add("hidden");
-        }
+  function showStep(stepNumber) {
+    // Hide all steps
+    for (let i = 1; i <= 8; i++) {
+      const step = document.getElementById(`step${i}`);
+      if (step) step.classList.add("hidden");
+    }
 
-        if (stepNumber === 2) {
-          stepNumber = 3;
-        }
+    if (stepNumber === 2) {
+      stepNumber = 3;
+    }
 
-        // Show selected step
-        const currentStep = document.getElementById(`step${stepNumber}`);
-        if (currentStep) currentStep.classList.remove("hidden");
+    // Show selected step
+    const currentStep = document.getElementById(`step${stepNumber}`);
+    if (currentStep) currentStep.classList.remove("hidden");
 
-        // Process guest choice based on step
-        switch (stepNumber) {
-          case 5: // Full participation
-            updateGuestChoice("attendance", "no");
-            submitToGoogleSheets();
-            break;
-          case 6: // Full participation
-            updateGuestChoice("attendance", "full");
-            submitToGoogleSheets();
-            break;
-          case 8: // No participation
-            updateGuestChoice("attendance", "ceremony");
-            submitToGoogleSheets();
-            break;
-        }
-      }
+    // Process guest choice based on step
+    switch (stepNumber) {
+      case 5: 
+        updateGuestChoice("attendance", "no");
+        submitToGoogleSheets();
+        break;
+      case 6: 
+        guestChoice.guestName = document.querySelector('input[name="guestName"]').value;
+        guestChoice.guestPhone = document.querySelector('input[name="guestPhone"]').value;
+        updateGuestChoice("attendance", "full");
+        submitToGoogleSheets();
+        break;
+      case 8: 
+        updateGuestChoice("attendance", "ceremony");
+        submitToGoogleSheets();
+        break;
+    }
+  }
 
-      const form = document.getElementById('graduationForm');
+  const form = document.getElementById('graduationForm');
+  const nameInput = form.querySelector('input[name="guestName"]');
+  const phoneInput = form.querySelector('input[name="guestPhone"]');
 
-      if (form) {
-        form.addEventListener("submit", (e) => {
-          e.preventDefault();
-          updateGuestChoice("guestName", form.querySelector('input[name="guestName"]').value);
-          updateGuestChoice("guestPhone", form.querySelector('input[name="guestPhone"]').value);
-          submitToGoogleSheets();
-          showStep(6);
-        });
-      } else {
-        console.error("Form not found!");
-      }
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    guestChoice.guestName = nameInput.value;
+    guestChoice.guestPhone = phoneInput.value;
+    guestChoice.attendance = "full";
+    
+    submitToGoogleSheets();
+    showStep(6);
+    
+    // Optional: Clear form after submission
+    nameInput.value = '';
+    phoneInput.value = '';
+  });
 
-      // Expose showStep to global scope if needed
-      window.showStep = showStep;
-    });
+  // Expose showStep to global scope if needed
+  window.showStep = showStep;
+});
   </script>
 </body>
 
