@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thiệp mời tốt nghiệp</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
+  <style>
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .card {
+      background: linear-gradient(to right, #ffefd5, #ffe4b5);
+      border: 2px solid #ffd700;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #b8860b, #daa520);
+      color: white;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(to right, #daa520, #b8860b);
+      transform: scale(1.05);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(to right, #666, #777);
+      color: white;
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: linear-gradient(to right, #777, #888);
+      transform: scale(1.05);
+    }
+
+    .animate-pulse {
+      animation: pulse 2s infinite;
+    }
+
+    .animate-spin {
+      animation: spin 4s linear infinite;
+    }
+
+    .animate-bounce {
+      animation: bounce 2s infinite;
+    }
+
+    .bg-main {
+      background: linear-gradient(to bottom right, #8b4513, #d2691e, #8b4513);
+      min-height: 100vh;
+    }
+
+    .text-primary {
+      color: #8b4513;
+    }
+
+    .text-secondary {
+      color: #b8860b;
+    }
+
+    .hover-text:hover {
+      color: #daa520;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .img-side {
+      width: 40%;
+      background-size: cover;
+      background-position: center;
+      border-radius: 0.5rem 0 0 0.5rem;
+    }
+
+    .dotted-underline {
+      border-bottom: 1px dotted #8b4513;
+      min-width: 200px;
+      display: inline-block;
+      margin-left: 8px;
+    }
+
+    @media (max-width: 768px) {
+      .card-container {
+        flex-direction: column;
+      }
+
+      .img-side {
+        width: 100%;
+        height: 300px;
+        border-radius: 0.5rem 0.5rem 0 0;
+      }
+
+      .content-side {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-main flex items-center justify-center p-4 min-h-screen">
+    <div id="step1" class="w-full max-w-6xl">
+      <div class="card flex flex-row shadow-2xl rounded-lg overflow-hidden">
+        <!-- Phần hình ảnh bên trái -->
+        <div class="img-side" style="
+              background-image: url('./HUỲNH\ TRÙNG\ DƯƠNG_SE150080_00903.jpeg');
+            "></div>
+
+        <!-- Phần nội dung bên phải -->
+        <div class="content-side flex-1 p-8 flex flex-col justify-between">
+          <div class="text-center mb-6">
+            <p class="text-secondary text-lg mb-4">
+              THÂN MỜI BẠN ĐẾN THAM DỰ
+            </p>
+            <h1 class="text-primary text-5xl font-bold mb-3 relative">
+              LỄ TỐT NGHIỆP
+              <span class="absolute -top-6 -left-6 text-[#FFD700] animate-pulse">⭐</span>
+              <span class="absolute -top-4 -right-6 text-[#FFD700] animate-pulse">⭐</span>
+            </h1>
+            <h2 class="text-secondary text-3xl mb-4">của Dương Huỳnh :3</h2>
+            <p class="text-secondary text-lg italic">
+              Chúc mừng thành quả của nhiều năm học tập chăm chỉ
+            </p>
+          </div>
+
+          <!-- Thông tin buổi lễ -->
+          <div class="bg-white/60 p-6 rounded-lg">
+            <p class="text-secondary text-lg italic">Chi tiết buổi lễ:</p>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="text-left">
+                <p class="text-primary text-lg mb-2">
+                  <span class="inline-block w-6">📅</span> Lễ tốt nghiệp:
+                </p>
+                <p class="text-primary text-lg mb-2">
+                  <span class="inline-block w-6">📍</span> Địa điểm lễ:
+                </p>
+              </div>
+              <div class="text-right">
+                <p class="text-primary text-lg font-medium mb-2">2:00 PM - 24/11/2025</p>
+                <p class="text-primary text-lg font-medium">Trường Đại học FPT HCM</p>
+                <a href="https://maps.app.goo.gl/SCjQ4K69uumpBcT37">Link GoogleMaps</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phần dưới: Thông tin sinh viên -->
+          <div class="bg-white/60 p-6 rounded-lg">
+            <p class="text-secondary text-lg italic">Thông tin liên hệ:</p>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="text-left">
+                <p class="text-primary text-lg mb-2">
+                  <span class="inline-block w-6">📱</span> Số điện thoại:
+                </p>
+                <p class="text-primary text-lg mb-2">
+                  <span class="inline-block w-6"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                      fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                      <path
+                        d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                    </svg></span>
+                  </span>
+                  Facebook:
+                </p>
+              </div>
+              <div class="text-right">
+                <p class="text-primary text-lg font-medium mb-2">
+                  0838323403
+                </p>
+                <a href="https://www.facebook.com/duong.huynh202" class="text-primary text-lg mb-2"> Huỳnh Trùng Dương
+                </a>
+              </div>
+            </div>
+            <div class="flex items-center justify-between mt-2">
+              <div class="flex items-center gap-2">
+                <span>📱</span>
+                <p class="text-primary">Liên hệ khác: </p>
+              </div>
+              <div class="flex items-center gap-2">
+                <span></span>
+                <p class="text-primary">0917984398 - Gặp Uyên</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nút xác nhận -->
+          <div class="pt-6 space-y-4">
+            <div class="flex gap-6 justify-center">
+              <button onclick="showStep(3)" class="btn-primary px-8 py-3 rounded-full text-lg">
+                🎓 Xác nhận tham dự
+              </button>
+              <button onclick="showStep(4)" class="btn-primary px-8 py-3 rounded-full text-lg">
+                Rất tiệc là không thể
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="step3" class="card p-10 max-w-xl text-center hidden">
+      <div class="space-y-8">
+        <div class="relative">
+          <span class="text-4xl">🎉</span>
+          <span class="absolute -top-4 right-1/4 text-[#FFD700] animate-pulse">✨</span>
+        </div>
+        <div class="space-y-3">
+          <h2 class="text-3xl font-bold text-primary hover-text">
+            Tiệc mừng tốt nghiệp
+          </h2>
+          <p class="text-secondary italic hover-text">
+            Hãy cùng chúng tôi chia sẻ niềm vui trong bữa tiệc thân mật
+          </p>
+        </div>
+
+        <div class="space-y-6 bg-white/60 p-6 rounded-lg">
+          <div class="flex items-center gap-3 justify-center text-primary">
+            <span>🍽️</span>
+            <p class="text-lg">5:00 PM - 24/11/2025</p>
+          </div>
+          <div class="flex items-center gap-3 justify-center text-primary">
+            <span>📍</span>
+            <p class="text-lg">Nhà hàng An Nam Garden</p>
+          </div>
+        </div>
+
+        <div id="google-sheets-form">
+          <div class="card p-4 mx-auto">
+            <form id="graduationForm">
+              <div class="mb-4">
+                <input type="text" name="guestName" required class="w-full p-2 border rounded"
+                  placeholder="Hãy cho mình biết bạn là ai?" />
+              </div>
+              <div class="mb-4">
+                <input type="tel" name="guestPhone" required class="w-full p-2 border rounded"
+                  placeholder="Số điện thoại để liên hệ nà :3" />
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="pt-6 space-y-4">
+          <p class="text-xl text-primary hover-text">
+            Bạn có thể tham dự bữa tiệc không?
+          </p>
+          <div class="flex gap-6 justify-center">
+            <button onclick="showStep(6)" class="btn-primary px-8 py-2 rounded">
+              Tham dự tiệc
+            </button>
+            <button onclick="showStep(7)" class="btn-secondary px-8 py-2 rounded">
+              Chỉ tham dự lễ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="step4" class="card p-10 max-w-md text-center hidden">
+      <div class="space-y-6">
+        <h2 class="text-2xl font-medium text-primary hover-text">
+          Bạn có thể sắp xếp lại được không?
+        </h2>
+        <p class="text-secondary hover-text">
+          Sự hiện diện của bạn sẽ làm buổi lễ thêm trọn vẹn
+        </p>
+        <div class="flex gap-6 justify-center">
+          <button onclick="showStep(3)" class="btn-primary px-8 py-2 rounded">
+            Mình sẽ cố gắng sắp xếp
+          </button>
+          <button onclick="showStep(5)" class="btn-secondary px-8 py-2 rounded">
+            Thật sự không thể
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="step5" class="card p-10 max-w-md text-center hidden">
+      <div class="space-y-6">
+        <span class="text-4xl animate-pulse inline-block">❤️</span>
+        <p class="text-xl text-primary hover-text">
+          Rất tiếc không gặp được bạn trong ngày đặc biệt này
+        </p>
+        <p class="text-secondary italic hover-text">
+          Hẹn gặp lại bạn vào dịp khác!
+        </p>
+      </div>
+    </div>
+
+    <div id="step6" class="card p-10 max-w-md text-center hidden">
+      <div class="space-y-6">
+        <span class="text-5xl animate-bounce inline-block">🎉</span>
+        <h2 class="text-3xl font-bold text-primary hover-text">
+          Cảm ơn bạn!
+        </h2>
+        <p class="text-xl text-secondary hover-text">
+          Rất hân hạnh được đón tiếp bạn trong buổi lễ và tiệc mừng!
+        </p>
+        <span class="text-3xl animate-spin inline-block">✨</span>
+      </div>
+    </div>
+
+    <div id="step7" class="card p-10 max-w-md text-center hidden">
+      <div class="space-y-6">
+        <h2 class="text-2xl font-medium text-primary hover-text">
+          Bạn có thể sắp xếp thời gian tham gia tiệc được không?
+        </h2>
+        <p class="text-secondary hover-text">
+          Chúng tôi rất vui nếu có thể gặp bạn ở cả hai dịp
+        </p>
+        <div class="flex gap-6 justify-center">
+          <button onclick="showStep(6)" class="btn-primary px-8 py-2 rounded">
+            Mình sẽ sắp xếp được
+          </button>
+          <button onclick="showStep(8)" class="btn-secondary px-8 py-2 rounded">
+            Xin lỗi, không thể
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="step8" class="card p-10 max-w-md text-center hidden">
+      <div class="space-y-6">
+        <span class="text-5xl animate-bounce inline-block">🎓</span>
+        <h2 class="text-3xl font-bold text-primary hover-text">
+          Cảm ơn bạn!
+        </h2>
+        <p class="text-xl text-secondary hover-text">
+          Rất hân hạnh được đón tiếp bạn trong buổi lễ!
+        </p>
+        <p class="text-secondary italic hover-text">
+          Hẹn gặp bạn vào dịp khác!
+        </p>
+        <span class="text-3xl animate-spin inline-block">✨</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const scriptURL = "https://673b5947339a4ce4451bdd2e.mockapi.io/invites";
+      let guestChoice = {
+        guestName: "",
+        guestPhone: "",
+        attendance: "",
+      };
+
+      function updateGuestChoice(key, value) {
+        guestChoice[key] = value;
+      }
+
+      function submitToGoogleSheets() {
+        console.log("here");
+        fetch(scriptURL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(guestChoice),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Dữ liệu đã được gửi thành công");
+            console.log(JSON.stringify(guestChoice));
+          })
+          .catch((error) => {
+            console.error("Lỗi gửi dữ liệu", error);
+          });
+      }
+
+      function showStep(stepNumber) {
+        // Hide all steps
+        for (let i = 1; i <= 8; i++) {
+          const step = document.getElementById(`step${i}`);
+          if (step) step.classList.add("hidden");
+        }
+
+        if (stepNumber === 2) {
+          stepNumber = 3;
+        }
+
+        // Show selected step
+        const currentStep = document.getElementById(`step${stepNumber}`);
+        if (currentStep) currentStep.classList.remove("hidden");
+
+        // Process guest choice based on step
+        switch (stepNumber) {
+          case 5: // Full participation
+            updateGuestChoice("attendance", "no");
+            submitToGoogleSheets();
+            break;
+          case 6: // Full participation
+            updateGuestChoice("attendance", "full");
+            submitToGoogleSheets();
+            break;
+          case 8: // No participation
+            updateGuestChoice("attendance", "ceremony");
+            submitToGoogleSheets();
+            break;
+        }
+      }
+
+      const form = document.getElementById('graduationForm');
+
+      if (form) {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          updateGuestChoice("guestName", form.querySelector('input[name="guestName"]').value);
+          updateGuestChoice("guestPhone", form.querySelector('input[name="guestPhone"]').value);
+          submitToGoogleSheets();
+          showStep(6);
+        });
+      } else {
+        console.error("Form not found!");
+      }
+
+      // Expose showStep to global scope if needed
+      window.showStep = showStep;
+    });
+  </script>
+</body>
+
+</html>
