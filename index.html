@@ -162,7 +162,16 @@
             </h1>
             <h2 class="text-secondary text-3xl mb-4">của Dương Huỳnh :3</h2>
             <p class="text-secondary text-lg italic">
-              Chúc mừng thành quả của nhiều năm học tập chăm chỉ
+            <div id="google-sheets-form">
+              <div class="card p-4 mx-auto">
+                <form id="graduationForm" class="flex gap-4">
+                  <input type="text" name="guestName" required class="flex-1 p-2 border rounded"
+                    placeholder="Hãy cho mình biết bạn là ai?" />
+                  <input type="tel" name="otherGuest" required class="flex-1 p-2 border rounded"
+                    placeholder="Có đi chung ai ko nà :3" />
+                </form>
+              </div>
+            </div>
             </p>
           </div>
 
@@ -179,7 +188,7 @@
                 </p>
               </div>
               <div class="text-right">
-                <p class="text-primary text-lg font-medium mb-2">2:00 PM - 24/11/2025</p>
+                <p class="text-primary text-lg font-medium mb-2">3:00 PM - 24/11/2025</p>
                 <p class="text-primary text-lg font-medium">Trường Đại học FPT HCM</p>
                 <a href="https://maps.app.goo.gl/SCjQ4K69uumpBcT37">Link GoogleMaps</a>
               </div>
@@ -230,7 +239,7 @@
               <button onclick="showStep(3)" class="btn-primary px-8 py-3 rounded-full text-lg">
                 🎓 Xác nhận tham dự
               </button>
-              <button onclick="showStep(4)" class="btn-primary px-8 py-3 rounded-full text-lg">
+              <button onclick="showStep(4)" class="btn-secondary px-8 py-3 rounded-full text-lg">
                 Rất tiệc là không thể
               </button>
             </div>
@@ -261,22 +270,10 @@
           </div>
           <div class="flex items-center gap-3 justify-center text-primary">
             <span>📍</span>
-            <p class="text-lg">Nhà hàng An Nam Garden</p>
+            <p class="text-lg">OLOGY Buffet Nướng</p>
           </div>
-        </div>
-
-        <div id="google-sheets-form">
-          <div class="card p-4 mx-auto">
-            <form id="graduationForm">
-              <div class="mb-4">
-                <input type="text" name="guestName" required class="w-full p-2 border rounded"
-                  placeholder="Hãy cho mình biết bạn là ai?" />
-              </div>
-              <div class="mb-4">
-                <input type="tel" name="guestPhone" required class="w-full p-2 border rounded"
-                  placeholder="Số điện thoại để liên hệ nà :3" />
-              </div>
-            </form>
+          <div class="flex items-center gap-3 justify-center text-primary">
+            <a href="https://maps.app.goo.gl/mgGCsiVmxr6NdLzQ6">Link GoogleMaps</a>
           </div>
         </div>
 
@@ -381,7 +378,7 @@
       const scriptURL = "https://673b5947339a4ce4451bdd2e.mockapi.io/invites";
       let guestChoice = {
         guestName: "",
-        guestPhone: "",
+        otherGuest: "",
         attendance: "",
       };
 
@@ -425,16 +422,20 @@
         // Process guest choice based on step
         switch (stepNumber) {
           case 5:
+            guestChoice.guestName = document.querySelector('input[name="guestName"]').value;
+            guestChoice.otherGuest = document.querySelector('input[name="otherGuest"]').value;
             updateGuestChoice("attendance", "no");
             submitToGoogleSheets();
             break;
           case 6:
             guestChoice.guestName = document.querySelector('input[name="guestName"]').value;
-            guestChoice.guestPhone = document.querySelector('input[name="guestPhone"]').value;
+            guestChoice.otherGuest = document.querySelector('input[name="otherGuest"]').value;
             updateGuestChoice("attendance", "full");
             submitToGoogleSheets();
             break;
           case 8:
+          guestChoice.guestName = document.querySelector('input[name="guestName"]').value;
+          guestChoice.otherGuest = document.querySelector('input[name="otherGuest"]').value;
             updateGuestChoice("attendance", "ceremony");
             submitToGoogleSheets();
             break;
@@ -443,13 +444,13 @@
 
       const form = document.getElementById('graduationForm');
       const nameInput = form.querySelector('input[name="guestName"]');
-      const phoneInput = form.querySelector('input[name="guestPhone"]');
+      const phoneInput = form.querySelector('input[name="otherGuest"]');
 
       form.addEventListener("submit", function (e) {
         e.preventDefault();
 
         guestChoice.guestName = nameInput.value;
-        guestChoice.guestPhone = phoneInput.value;
+        guestChoice.otherGuest = phoneInput.value;
         guestChoice.attendance = "full";
 
         submitToGoogleSheets();
