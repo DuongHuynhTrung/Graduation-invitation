@@ -123,54 +123,108 @@
     }
 
     @media (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
+      body {
+        font-size: 14px;
+      }
 
-  .card {
-    flex-direction: column !important;
-  }
+      .card {
+        flex-direction: column !important;
+      }
 
-  .img-side {
-    width: 100%;
-    height: 250px;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-  }
+      .img-side {
+        width: 100%;
+        height: 250px;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+      }
 
-  /* Đảm bảo ảnh trong các phần khác cũng responsive */
-  img {
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-  .content-side {
-    width: 100%;
-    padding: 1rem !important;
-  }
+      /* Đảm bảo ảnh trong các phần khác cũng responsive */
+      img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
 
-  h1 {
-    font-size: 2.5rem !important;
-  }
+      .content-side {
+        width: 100%;
+        padding: 1rem !important;
+      }
 
-  h2 {
-    font-size: 1.8rem !important;
-  }
+      h1 {
+        font-size: 2.5rem !important;
+      }
 
-  .text-lg {
-    font-size: 1rem !important;
-  }
+      h2 {
+        font-size: 1.8rem !important;
+      }
 
-  .btn-primary, .btn-secondary {
-    padding: 0.5rem 1rem !important;
-    font-size: 0.9rem !important;
-  }
+      .text-lg {
+        font-size: 1rem !important;
+      }
 
-  .flex-col {
-    gap: 1rem;
-  }
-}
+      .btn-primary,
+      .btn-secondary {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.9rem !important;
+      }
+
+      .flex-col {
+        gap: 1rem;
+      }
+
+      input {
+        width: 100%;
+        /* Input chiếm toàn bộ chiều ngang */
+        font-size: 0.8rem;
+        /* Giảm kích thước chữ */
+      }
+
+      input::placeholder {
+        font-size: 0.8rem;
+        /* Giảm kích thước placeholder */
+      }
+
+    }
+
+    /* Đảm bảo form responsive */
+    #graduationForm {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    #graduationForm input {
+      width: 100%;
+      /* Mặc định input chiếm toàn bộ chiều rộng trên màn hình nhỏ */
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    #graduationForm input:focus {
+      outline: none;
+      border-color: #b8860b;
+      box-shadow: 0 0 5px rgba(184, 134, 11, 0.5);
+    }
+
+    input {
+      min-width: 200px;
+      /* Đảm bảo chiều rộng tối thiểu */
+    }
+
+    input::placeholder {
+      font-size: 0.9rem;
+      /* Điều chỉnh kích thước cho phù hợp */
+    }
+
+    input {
+      padding: 8px;
+      /* Giảm padding nếu cần */
+    }
   </style>
 </head>
 
@@ -407,37 +461,37 @@
   </div>
 
   <script>
-   document.addEventListener('DOMContentLoaded', function () {
-  const scriptURL = "https://673b5947339a4ce4451bdd2e.mockapi.io/invites";
-  const nameInput = document.querySelector('input[name="guestName"]');
-  const otherGuestInput = document.querySelector('input[name="otherGuest"]');
-  const graduationForm = document.getElementById('graduationForm');
+    document.addEventListener('DOMContentLoaded', function () {
+      const scriptURL = "https://673b5947339a4ce4451bdd2e.mockapi.io/invites";
+      const nameInput = document.querySelector('input[name="guestName"]');
+      const otherGuestInput = document.querySelector('input[name="otherGuest"]');
+      const graduationForm = document.getElementById('graduationForm');
 
-  let guestChoice = {
-    guestName: "",
-    otherGuest: "",
-    attendance: "",
-  };
+      let guestChoice = {
+        guestName: "",
+        otherGuest: "",
+        attendance: "",
+      };
 
-  function showNotification(message, type = 'warning') {
-  // Xóa thông báo cũ nếu có
-  const existingNotification = document.getElementById('notification-overlay');
-  if (existingNotification) {
-    existingNotification.remove();
-  }
+      function showNotification(message, type = 'warning') {
+        // Xóa thông báo cũ nếu có
+        const existingNotification = document.getElementById('notification-overlay');
+        if (existingNotification) {
+          existingNotification.remove();
+        }
 
-  // Tạo container thông báo
-  const notification = document.createElement('div');
-  notification.id = 'notification-overlay';
-  notification.className = `fixed top-4 left-1/2 transform -translate-x-1/2 z-50 
+        // Tạo container thông báo
+        const notification = document.createElement('div');
+        notification.id = 'notification-overlay';
+        notification.className = `fixed top-4 left-1/2 transform -translate-x-1/2 z-50 
     bg-gray-800 text-white 
     px-6 py-3 rounded-lg shadow-lg 
     flex items-center 
     transition-all duration-300 
     border-l-4 border-orange-500`;
-  
-  // Nội dung thông báo
-  notification.innerHTML = `
+
+        // Nội dung thông báo
+        notification.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
         d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" 
@@ -446,96 +500,96 @@
     <span class="font-medium text-sm">${message} 🤘</span>
   `;
 
-  // Thêm vào body
-  document.body.appendChild(notification);
+        // Thêm vào body
+        document.body.appendChild(notification);
 
-  // Tự động ẩn sau 3 giây
-  setTimeout(() => {
-    notification.classList.add('opacity-0', 'translate-y-[-20px]');
-    setTimeout(() => {
-      notification.remove();
-    }, 300);
-  }, 3000);
-}
-
-  function updateGuestChoice(key, value) {
-    guestChoice[key] = value;
-  }
-
-  function submitToGoogleSheets() {
-    fetch(scriptURL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(guestChoice),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Dữ liệu đã được gửi thành công");
-        console.log(JSON.stringify(guestChoice));
-      })
-      .catch((error) => {
-        console.error("Lỗi gửi dữ liệu", error);
-      });
-  }
-
-  window.showStep = function(stepNumber) {
-    if (stepNumber === 3 || stepNumber === 4) {
-      if (!nameInput.value.trim()) {
-        showNotification('Hãy cho mình biết bạn là ai đi nào', 'warning');
-        return;
+        // Tự động ẩn sau 3 giây
+        setTimeout(() => {
+          notification.classList.add('opacity-0', 'translate-y-[-20px]');
+          setTimeout(() => {
+            notification.remove();
+          }, 300);
+        }, 3000);
       }
-    }
 
-    // Hide all steps
-    for (let i = 1; i <= 8; i++) {
-      const step = document.getElementById(`step${i}`);
-      if (step) step.classList.add("hidden");
-    }
+      function updateGuestChoice(key, value) {
+        guestChoice[key] = value;
+      }
 
-    // Show selected step
-    const currentStep = document.getElementById(`step${stepNumber}`);
-    if (currentStep) currentStep.classList.remove("hidden");
+      function submitToGoogleSheets() {
+        fetch(scriptURL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(guestChoice),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Dữ liệu đã được gửi thành công");
+            console.log(JSON.stringify(guestChoice));
+          })
+          .catch((error) => {
+            console.error("Lỗi gửi dữ liệu", error);
+          });
+      }
 
-    // Process guest choice based on step
-    switch (stepNumber) {
-      case 5:
+      window.showStep = function (stepNumber) {
+        if (stepNumber === 3 || stepNumber === 4) {
+          if (!nameInput.value.trim()) {
+            showNotification('Hãy cho mình biết bạn là ai đi nào', 'warning');
+            return;
+          }
+        }
+
+        // Hide all steps
+        for (let i = 1; i <= 8; i++) {
+          const step = document.getElementById(`step${i}`);
+          if (step) step.classList.add("hidden");
+        }
+
+        // Show selected step
+        const currentStep = document.getElementById(`step${stepNumber}`);
+        if (currentStep) currentStep.classList.remove("hidden");
+
+        // Process guest choice based on step
+        switch (stepNumber) {
+          case 5:
+            guestChoice.guestName = nameInput.value;
+            guestChoice.otherGuest = otherGuestInput.value;
+            updateGuestChoice("attendance", "no");
+            submitToGoogleSheets();
+            break;
+          case 6:
+            guestChoice.guestName = nameInput.value;
+            guestChoice.otherGuest = otherGuestInput.value;
+            updateGuestChoice("attendance", "full");
+            submitToGoogleSheets();
+            break;
+          case 8:
+            guestChoice.guestName = nameInput.value;
+            guestChoice.otherGuest = otherGuestInput.value;
+            updateGuestChoice("attendance", "ceremony");
+            submitToGoogleSheets();
+            break;
+        }
+      }
+
+      graduationForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
         guestChoice.guestName = nameInput.value;
         guestChoice.otherGuest = otherGuestInput.value;
-        updateGuestChoice("attendance", "no");
+        guestChoice.attendance = "full";
+
         submitToGoogleSheets();
-        break;
-      case 6:
-        guestChoice.guestName = nameInput.value;
-        guestChoice.otherGuest = otherGuestInput.value;
-        updateGuestChoice("attendance", "full");
-        submitToGoogleSheets();
-        break;
-      case 8:
-        guestChoice.guestName = nameInput.value;
-        guestChoice.otherGuest = otherGuestInput.value;
-        updateGuestChoice("attendance", "ceremony");
-        submitToGoogleSheets();
-        break;
-    }
-  }
+        showStep(6);
 
-  graduationForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    guestChoice.guestName = nameInput.value;
-    guestChoice.otherGuest = otherGuestInput.value;
-    guestChoice.attendance = "full";
-
-    submitToGoogleSheets();
-    showStep(6);
-
-    // Optional: Clear form after submission
-    nameInput.value = '';
-    otherGuestInput.value = '';
-  });
-});
+        // Optional: Clear form after submission
+        nameInput.value = '';
+        otherGuestInput.value = '';
+      });
+    });
   </script>
 </body>
 
